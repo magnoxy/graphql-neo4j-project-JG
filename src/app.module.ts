@@ -22,6 +22,7 @@ import { join } from 'path';
         return {
           autoSchemaFile: false,
           schema: await neoSchema.getSchema(),
+          csrfPrevention: false, // Desativa a prevenção CSRF
           // Removendo a configuração CORS
           cors: false, // Desativa o CORS
         };
