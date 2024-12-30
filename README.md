@@ -1,7 +1,7 @@
 # Projeto JG
 
 ## Descrição
-Este projeto utiliza diversas tecnologias para criar uma aplicação robusta e eficiente. A aplicação pode ser executada localmente ou visualizada na Vercel.
+Este projeto utiliza diversas tecnologias para criar uma API robusta e eficiente com informações de filmes. A aplicação pode ser executada localmente ou visualizada na Vercel. 
 
 ## Tecnologias Utilizadas
 - **Node.js**: Ambiente de execução para JavaScript.
