@@ -22,11 +22,8 @@ import { join } from 'path';
         return {
           autoSchemaFile: false,
           schema: await neoSchema.getSchema(),
-          cors: {
-            origin: '*', // Permitir requisições de qualquer origem
-            methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-            credentials: true,
-          },
+          // Removendo a configuração CORS
+          cors: false, // Desativa o CORS
         };
       },
     }),
