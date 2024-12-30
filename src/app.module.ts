@@ -20,7 +20,7 @@ import { join } from 'path';
         const neoSchema = new Neo4jGraphQL({ typeDefs, driver });
 
         return {
-          autoSchemaFile: true,
+          autoSchemaFile: false,
           schema: await neoSchema.getSchema(),
           csrfPrevention: false,
           introspection: true,
