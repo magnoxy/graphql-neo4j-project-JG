@@ -1,9 +1,15 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { ExpressAdapter } from '@nestjs/platform-express';
+import express from 'express';
+
+const server = express();
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
-  console.log('Application is running on: http://localhost:3000/graphql');
+  const app = await NestFactory.create(AppModule, new ExpressAdapter(server));
+  await app.init();
 }
-bootstrap();
+
+bootstrap().then(() => {
+  module.exports = server;
+});
