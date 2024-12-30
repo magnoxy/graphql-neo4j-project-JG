@@ -1,0 +1,83 @@
+type ActedInProperties @relationshipProperties {
+  role: String!
+}
+
+type Actor @node {
+  actedInMovies: [Movie!]!
+    @relationship(
+      type: "ACTED_IN"
+      direction: OUT
+      properties: "ActedInProperties"
+    )
+  bio: String!
+  born: Date!
+  bornIn: String!
+  imdbId: String!
+  name: String!
+  poster: String!
+  tmdbId: String!
+  url: String!
+}
+
+type Director @node {
+  bio: String!
+  born: Date!
+  bornIn: String!
+  directedMovies: [Movie!]! @relationship(type: "DIRECTED", direction: OUT)
+  imdbId: String!
+  name: String!
+  poster: String!
+  tmdbId: String!
+  url: String!
+}
+
+type Genre @node {
+  moviesInGenre: [Movie!]! @relationship(type: "IN_GENRE", direction: IN)
+  name: String!
+}
+
+type Movie @node {
+  actors: [String]
+  actorsActedIn: [Actor!]!
+    @relationship(
+      type: "ACTED_IN"
+      direction: IN
+      properties: "ActedInProperties"
+    )
+  directors: [String]
+  directorsDirected: [Director!]! @relationship(type: "DIRECTED", direction: IN)
+  genres: [String]
+  imdbId: String
+  imdbRating: Float
+  imdbVotes: BigInt
+  inGenreGenres: [Genre!]! @relationship(type: "IN_GENRE", direction: OUT)
+  plot: String
+  poster: String
+  releaseDate: String
+  released: String
+  revenue: BigInt
+  runtime: BigInt
+  title: String!
+  tmdbId: String
+  url: String
+  usersRated: [User!]!
+    @relationship(type: "RATED", direction: IN, properties: "RatedProperties")
+  year: BigInt
+}
+
+type RatedProperties @relationshipProperties {
+  rating: Float!
+  timestamp: BigInt!
+}
+
+type User @node {
+  name: String!
+  ratedMovies: [Movie!]!
+    @relationship(type: "RATED", direction: OUT, properties: "RatedProperties")
+  userId: String!
+}
+
+type Mutation {
+  rateMovie(userId: String!, movieTitle: String!, rating: Float!): Movie
+}
+
